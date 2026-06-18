@@ -1,0 +1,17 @@
+[
+  {
+    "task": "Parse an AWS CloudWatch log entry and extract the timestamp, log level, and message using regex",
+    "format": "regex",
+    "solution_criteria": "The regex should correctly capture the timestamp in ISO 8601 format, log level (INFO, ERROR, WARN, DEBUG), and the remaining message text from a standard CloudWatch log line"
+  },
+  {
+    "task": "Create a JSON policy document that grants an IAM user read-only access to a specific S3 bucket named 'my-app-bucket'",
+    "format": "json",
+    "solution_criteria": "The JSON should be valid AWS IAM policy syntax with appropriate Principal, Action (s3:GetObject, s3:ListBucket), Resource ARN, and Effect set to Allow"
+  },
+  {
+    "task": "Write a Python function that takes an AWS EC2 instance ID and returns True if the instance is in a 'running' state, False otherwise, using boto3",
+    "format": "python",
+    "solution_criteria": "The function should use boto3 EC2 client, call describe_instances with the instance ID, parse the response to check instance state, and handle potential errors gracefully"
+  }
+]

@@ -39,3 +39,7 @@ At low temperatures (near 0), Claude becomes very deterministic - it almost alwa
 - Creative writing
 - Marketing content
 - Joke generation
+
+## Promp evaluation
+
+Check, weather the prompt is working better than another one.
