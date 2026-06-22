@@ -1,0 +1,261 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Prompt Evaluation Report</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 20px;
+                color: #333;
+            }
+            .header {
+                background-color: #f0f0f0;
+                padding: 20px;
+                border-radius: 5px;
+                margin-bottom: 20px;
+            }
+            .summary-stats {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .stat-box {
+                background-color: #fff;
+                border-radius: 5px;
+                padding: 15px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                flex-basis: 30%;
+                min-width: 200px;
+            }
+            .stat-value {
+                font-size: 24px;
+                font-weight: bold;
+                margin-top: 5px;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+            th {
+                background-color: #4a4a4a;
+                color: white;
+                text-align: left;
+                padding: 12px;
+            }
+            td {
+                padding: 10px;
+                border-bottom: 1px solid #ddd;
+                vertical-align: top;
+            }
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+            .output-cell {
+                white-space: pre-wrap;
+            }
+            .score {
+                font-weight: bold;
+                padding: 5px 10px;
+                border-radius: 3px;
+                display: inline-block;
+            }
+            .score-high {
+                background-color: #c8e6c9;
+                color: #2e7d32;
+            }
+            .score-medium {
+                background-color: #fff9c4;
+                color: #f57f17;
+            }
+            .score-low {
+                background-color: #ffcdd2;
+                color: #c62828;
+            }
+            .output {
+                overflow: auto;
+                white-space: pre-wrap;
+            }
+
+            .output pre {
+                background-color: #f5f5f5;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                padding: 10px;
+                margin: 0;
+                font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+                font-size: 14px;
+                line-height: 1.4;
+                color: #333;
+                box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+                overflow-x: auto;
+                white-space: pre-wrap; 
+                word-wrap: break-word; 
+            }
+
+            td {
+                width: 20%;
+            }
+            .score-col {
+                width: 80px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Prompt Evaluation Report</h1>
+            <div class="summary-stats">
+                <div class="stat-box">
+                    <div>Total Test Cases</div>
+                    <div class="stat-value">4</div>
+                </div>
+                <div class="stat-box">
+                    <div>Average Score</div>
+                    <div class="stat-value">7.2 / 10</div>
+                </div>
+                <div class="stat-box">
+                    <div>Pass Rate (≥7)</div>
+                    <div class="stat-value">75.0%</div>
+                </div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Scenario</th>
+                    <th>Prompt Inputs</th>
+                    <th>Solution Criteria</th>
+                    <th>Output</th>
+                    <th>Score</th>
+                    <th>Reasoning</th>
+                </tr>
+            </thead>
+            <tbody>
+    
+            <tr>
+                <td>Testing with a dense interdisciplinary passage containing overlapping topics from biology, chemistry, and environmental science to verify accurate topic extraction without duplication</td>
+                <td class="prompt-inputs"><strong>content:</strong> The bioaccumulation of persistent organic pollutants (POPs) in aquatic ecosystems represents a critical intersection of environmental chemistry and ecological toxicology. These lipophilic compounds, including polychlorinated biphenyls (PCBs) and dichlorodiphenyltrichloroethane (DDT), undergo biomagnification through food webs as they accumulate in organism tissues with high lipid content. Recent studies demonstrate that enzymatic degradation pathways involving cytochrome P450 systems can partially metabolize certain POPs, though metabolites often exhibit comparable or enhanced toxicity. The sorption behavior of these contaminants to dissolved organic matter and sediment particles is governed by hydrophobic interactions and pH-dependent mechanisms, influencing their bioavailability and transport dynamics in freshwater and marine environments.</td>
+                <td class="criteria">• Extracts all distinct topics without duplication (e.g., 'bioaccumulation' and 'biomagnification' are separate topics)<br>• Returns output as a valid JSON array of strings<br>• Captures topics spanning biology, chemistry, and environmental science domains</td>
+                <td class="output"><pre>```json
+[
+  "bioaccumulation",
+  "persistent organic pollutants",
+  "aquatic ecosystems",
+  "environmental chemistry",
+  "ecological toxicology",
+  "lipophilic compounds",
+  "polychlorinated biphenyls",
+  "dichlorodiphenyltrichloroethane",
+  "biomagnification",
+  "food webs",
+  "enzymatic degradation",
+  "cytochrome P450",
+  "toxicity",
+  "sorption behavior",
+  "dissolved organic matter",
+  "sediment particles",
+  "hydrophobic interactions",
+  "pH-dependent mechanisms",
+  "bioavailability",
+  "transport dynamics",
+  "freshwater environments",
+  "marine environments"
+]
+```</pre></td>
+                <td class="score-col"><span class="score score-high">9</span></td>
+                <td class="reasoning">The solution fully satisfies all mandatory requirements: it is a valid JSON array containing only topic strings with no extra commentary. It captures topics spanning the required domains and maintains distinct topics without duplication. The extraction is thorough and accurate, identifying both major concepts (bioaccumulation, biomagnification, toxicity) and specific technical terms (PCBs, DDT, cytochrome P450). While there is minor room for improvement in topic consolidation and granularity consistency, these are secondary considerations that do not detract from a comprehensive and accurate extraction. The solution meets all stated criteria effectively.</td>
+            </tr>
+        
+            <tr>
+                <td>Testing with a passage containing specialized jargon and domain-specific terminology to ensure the prompt correctly identifies niche topics versus general concepts</td>
+                <td class="prompt-inputs"><strong>content:</strong> Recent advances in CRISPR-Cas9 gene editing have demonstrated significant efficacy in treating monogenic disorders through precise genomic modifications. The mechanism relies on the RNA-guided endonuclease complex, which targets specific DNA sequences with remarkable specificity, though off-target effects remain a critical concern in clinical applications. Concurrent developments in epigenetic regulation, particularly histone deacetylase inhibitors and DNA methyltransferase modulators, offer complementary therapeutic approaches for polygenic conditions. Additionally, the integration of machine learning algorithms for predicting guide RNA efficiency and optimizing codon usage in heterologous expression systems has substantially improved experimental outcomes. These molecular techniques must be evaluated within the broader context of bioethical frameworks governing human germline modification and equitable access to gene therapy in resource-limited settings.</td>
+                <td class="criteria">• Identifies specialized domain-specific terms (e.g., CRISPR-Cas9, epigenetic regulation, histone deacetylase inhibitors) as distinct topics<br>• Distinguishes niche technical topics from general concepts (e.g., separates 'gene therapy' as general from 'off-target effects' as specialized)<br>• Extracts all major research areas covered without duplicating overlapping concepts</td>
+                <td class="output"><pre>```json
+[
+  "CRISPR-Cas9 gene editing",
+  "monogenic disorders",
+  "genomic modifications",
+  "RNA-guided endonuclease",
+  "off-target effects",
+  "epigenetic regulation",
+  "histone deacetylase inhibitors",
+  "DNA methyltransferase modulators",
+  "polygenic conditions",
+  "machine learning algorithms",
+  "guide RNA efficiency",
+  "codon usage optimization",
+  "heterologous expression systems",
+  "bioethical frameworks",
+  "human germline modification",
+  "gene therapy",
+  "resource-limited settings"
+]
+```</pre></td>
+                <td class="score-col"><span class="score score-high">9</span></td>
+                <td class="reasoning">The solution fully satisfies all mandatory requirements: it contains a valid JSON array of strings, each entry is a clean topic without commentary, and the response contains only the JSON array. Regarding secondary criteria, the solution successfully distinguishes specialized technical topics from general concepts (e.g., 'off-target effects' vs. 'gene therapy') and identifies domain-specific terminology. The extraction is comprehensive and covers all major research areas. However, there is minor room for improvement in avoiding slight redundancy between closely related optimization techniques. The solution demonstrates strong adherence to the task requirements with only minor conceptual overlap issues that don't significantly detract from overall quality.</td>
+            </tr>
+        
+            <tr>
+                <td>Testing with a short, minimalist passage with implicit rather than explicit topics to evaluate whether the prompt can infer main subjects from context clues</td>
+                <td class="prompt-inputs"><strong>content:</strong> The specimens were subjected to repeated thermal cycling between -40°C and 85°C over 500 hours. Microscopic examination revealed crystalline formations along grain boundaries, suggesting phase segregation under thermal stress. Comparative analysis with control samples showed a 23% reduction in tensile strength, while X-ray diffraction patterns indicated structural rearrangement consistent with Ostwald ripening mechanisms observed in similar alloy systems.</td>
+                <td class="criteria">• Identifies implicit topics inferable from context (e.g., materials science, thermal testing, metallurgical degradation)<br>• Extracts topics not explicitly named but evident from technical references and methodology<br>• Returns results as a JSON array of strings</td>
+                <td class="output"><pre>```json
+[
+  "thermal cycling",
+  "crystalline formations",
+  "grain boundaries",
+  "phase segregation",
+  "thermal stress",
+  "tensile strength",
+  "X-ray diffraction",
+  "structural rearrangement",
+  "Ostwald ripening",
+  "alloy systems"
+]
+```</pre></td>
+                <td class="score-col"><span class="score score-medium">7</span></td>
+                <td class="reasoning">The solution meets all mandatory requirements: it provides a valid JSON array of strings containing topics from the passage, with clean strings containing only topic names and no extra commentary. The response is JSON-only as required. However, the secondary criteria ask for identification of implicit topics inferable from context and extraction of topics not explicitly named but evident from technical references. While the solution captures some implicit topics (the technical terms themselves demonstrate materials science context), it could be more comprehensive in extracting higher-level implicit topics like the overarching domain, testing methodology categories, or failure mechanisms that are evident from the passage structure and technical language used.</td>
+            </tr>
+        
+            <tr>
+                <td>Testing with a passage discussing multiple methodologies and frameworks within a single scholarly work to verify the prompt distinguishes between research approaches and actual research topics</td>
+                <td class="prompt-inputs"><strong>content:</strong> This study employs a mixed-methods approach combining qualitative phenomenological analysis with quantitative structural equation modeling to investigate climate change adaptation in coastal communities. We utilize grounded theory methodology to code interview transcripts from 45 participants, while simultaneously applying hierarchical regression analysis to survey data (n=1,200) examining the relationship between perceived climate risk, adaptive capacity, and migration intentions. Our theoretical framework integrates social-ecological systems theory with the adaptive capacity framework, drawing on longitudinal panel data spanning 2015-2023. The phenomenological component reveals emergent themes around environmental justice and intergenerational responsibility, whereas the SEM results indicate that adaptive capacity mediates 62% of the relationship between climate perception and behavioral outcomes.</td>
+                <td class="criteria">• Extracted topics are substantive research subjects, not methodological approaches (e.g., 'climate change adaptation' and 'migration intentions' are topics; 'mixed-methods' and 'grounded theory' are not)<br>• All distinct research topics mentioned are included in the output<br>• Output is formatted as a JSON array of strings</td>
+                <td class="output"><pre>```json
+[
+  "climate change adaptation",
+  "coastal communities",
+  "mixed-methods approach",
+  "phenomenological analysis",
+  "structural equation modeling",
+  "grounded theory methodology",
+  "interview analysis",
+  "hierarchical regression analysis",
+  "survey data",
+  "perceived climate risk",
+  "adaptive capacity",
+  "migration intentions",
+  "social-ecological systems theory",
+  "adaptive capacity framework",
+  "longitudinal panel data",
+  "environmental justice",
+  "intergenerational responsibility",
+  "behavioral outcomes"
+]
+```</pre></td>
+                <td class="score-col"><span class="score score-low">4</span></td>
+                <td class="reasoning">The solution violates the primary secondary criterion by including multiple methodological approaches alongside substantive topics. The criteria explicitly state that topics like 'climate change adaptation' and 'migration intentions' should be extracted, while 'mixed-methods' and 'grounded theory' should not be. The solution includes at least 6 methodological terms that should have been excluded. While the JSON formatting is correct and many substantive topics are present, the inclusion of methodological approaches represents a fundamental misunderstanding of the extraction task. A correct solution would remove: mixed-methods approach, phenomenological analysis, structural equation modeling, grounded theory methodology, interview analysis, hierarchical regression analysis, and longitudinal panel data.</td>
+            </tr>
+        
+            </tbody>
+        </table>
+    </body>
+    </html>
+    

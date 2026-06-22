@@ -1,0 +1,50 @@
+[
+  {
+    "prompt_inputs": {
+      "content": "The bioaccumulation of persistent organic pollutants (POPs) in aquatic ecosystems represents a critical intersection of environmental chemistry and ecological toxicology. These lipophilic compounds, including polychlorinated biphenyls (PCBs) and dichlorodiphenyltrichloroethane (DDT), undergo biomagnification through food webs as they accumulate in organism tissues with high lipid content. Recent studies demonstrate that enzymatic degradation pathways involving cytochrome P450 systems can partially metabolize certain POPs, though metabolites often exhibit comparable or enhanced toxicity. The sorption behavior of these contaminants to dissolved organic matter and sediment particles is governed by hydrophobic interactions and pH-dependent mechanisms, influencing their bioavailability and transport dynamics in freshwater and marine environments."
+    },
+    "solution_criteria": [
+      "Extracts all distinct topics without duplication (e.g., 'bioaccumulation' and 'biomagnification' are separate topics)",
+      "Returns output as a valid JSON array of strings",
+      "Captures topics spanning biology, chemistry, and environmental science domains"
+    ],
+    "task_description": "\"\n    Extract topics out of a passage of text from a scholarly article into a JSON array of strings\"\n    ",
+    "scenario": "Testing with a dense interdisciplinary passage containing overlapping topics from biology, chemistry, and environmental science to verify accurate topic extraction without duplication"
+  },
+  {
+    "prompt_inputs": {
+      "content": "Recent advances in CRISPR-Cas9 gene editing have demonstrated significant efficacy in treating monogenic disorders through precise genomic modifications. The mechanism relies on the RNA-guided endonuclease complex, which targets specific DNA sequences with remarkable specificity, though off-target effects remain a critical concern in clinical applications. Concurrent developments in epigenetic regulation, particularly histone deacetylase inhibitors and DNA methyltransferase modulators, offer complementary therapeutic approaches for polygenic conditions. Additionally, the integration of machine learning algorithms for predicting guide RNA efficiency and optimizing codon usage in heterologous expression systems has substantially improved experimental outcomes. These molecular techniques must be evaluated within the broader context of bioethical frameworks governing human germline modification and equitable access to gene therapy in resource-limited settings."
+    },
+    "solution_criteria": [
+      "Identifies specialized domain-specific terms (e.g., CRISPR-Cas9, epigenetic regulation, histone deacetylase inhibitors) as distinct topics",
+      "Distinguishes niche technical topics from general concepts (e.g., separates 'gene therapy' as general from 'off-target effects' as specialized)",
+      "Extracts all major research areas covered without duplicating overlapping concepts"
+    ],
+    "task_description": "\"\n    Extract topics out of a passage of text from a scholarly article into a JSON array of strings\"\n    ",
+    "scenario": "Testing with a passage containing specialized jargon and domain-specific terminology to ensure the prompt correctly identifies niche topics versus general concepts"
+  },
+  {
+    "prompt_inputs": {
+      "content": "The specimens were subjected to repeated thermal cycling between -40\u00b0C and 85\u00b0C over 500 hours. Microscopic examination revealed crystalline formations along grain boundaries, suggesting phase segregation under thermal stress. Comparative analysis with control samples showed a 23% reduction in tensile strength, while X-ray diffraction patterns indicated structural rearrangement consistent with Ostwald ripening mechanisms observed in similar alloy systems."
+    },
+    "solution_criteria": [
+      "Identifies implicit topics inferable from context (e.g., materials science, thermal testing, metallurgical degradation)",
+      "Extracts topics not explicitly named but evident from technical references and methodology",
+      "Returns results as a JSON array of strings"
+    ],
+    "task_description": "\"\n    Extract topics out of a passage of text from a scholarly article into a JSON array of strings\"\n    ",
+    "scenario": "Testing with a short, minimalist passage with implicit rather than explicit topics to evaluate whether the prompt can infer main subjects from context clues"
+  },
+  {
+    "prompt_inputs": {
+      "content": "This study employs a mixed-methods approach combining qualitative phenomenological analysis with quantitative structural equation modeling to investigate climate change adaptation in coastal communities. We utilize grounded theory methodology to code interview transcripts from 45 participants, while simultaneously applying hierarchical regression analysis to survey data (n=1,200) examining the relationship between perceived climate risk, adaptive capacity, and migration intentions. Our theoretical framework integrates social-ecological systems theory with the adaptive capacity framework, drawing on longitudinal panel data spanning 2015-2023. The phenomenological component reveals emergent themes around environmental justice and intergenerational responsibility, whereas the SEM results indicate that adaptive capacity mediates 62% of the relationship between climate perception and behavioral outcomes."
+    },
+    "solution_criteria": [
+      "Extracted topics are substantive research subjects, not methodological approaches (e.g., 'climate change adaptation' and 'migration intentions' are topics; 'mixed-methods' and 'grounded theory' are not)",
+      "All distinct research topics mentioned are included in the output",
+      "Output is formatted as a JSON array of strings"
+    ],
+    "task_description": "\"\n    Extract topics out of a passage of text from a scholarly article into a JSON array of strings\"\n    ",
+    "scenario": "Testing with a passage discussing multiple methodologies and frameworks within a single scholarly work to verify the prompt distinguishes between research approaches and actual research topics"
+  }
+]
