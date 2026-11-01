@@ -1,0 +1,30 @@
+version: 2
+updates:
+  # add new project folders to these lists so their security PRs get grouped too
+  - package-ecosystem: npm
+    directories:
+      - /Projects/queries
+      - /Projects/queries_COMPLETED
+      - /Projects/uigen
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 0 # no routine version bumps, security updates only
+    groups:
+      security:
+        applies-to: security-updates
+        patterns: ["*"]
+  - package-ecosystem: uv
+    directories:
+      - /Projects/API
+      - /Projects/cli_project
+      - /Projects/cli_project_COMPLETE
+      - /Projects/prompt_engineering
+      - /Projects/prompt_eval
+      - /Projects/tools_usage
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 0 # no routine version bumps, security updates only
+    groups:
+      security:
+        applies-to: security-updates
+        patterns: ["*"]
